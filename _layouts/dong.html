@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<div class="page-with-sidebar">
+<div class="region-page">
+
+  <nav class="breadcrumb" aria-label="위치">
+    <a href="/">홈</a>
+    <span>›</span>
+    <a href="/region/{{ page.doShort | uri_escape }}/">{{ page.doShort }}</a>
+    <span>›</span>
+    <a href="/region/{{ page.doShort | uri_escape }}/{{ page.sgSlug | uri_escape }}/">{{ page.sigungu }}</a>
+    <span>›</span>
+    <span>{{ page.dongLabel }}</span>
+  </nav>
+
+  <div class="region-page-header">
+    <h1>🏗️ {{ page.sigungu }} {{ page.dongLabel }} 건설업체</h1>
+    <p>{{ page.doShort }} {{ page.sigungu }} {{ page.dongLabel }} · 총 {{ page.totalCount }}곳</p>
+  </div>
+
+  <div class="ad-slot">
+    {% include ad.html %}
+  </div>
+
+  <div style="margin-bottom:16px;">
+    <input type="text" id="listFilter" class="search-input" style="border:1px solid #E5E7EB;" placeholder="업체명 또는 업종으로 이 지역 안에서 다시 찾기...">
+  </div>
+
+  {% if page.truncated %}
+  <div style="background:#EEF2FF;border:1px solid #C7D2FE;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:.87rem;color:#3730A3;">
+    업체가 많아 가나다순 상위 {{ page.items.size }}곳만 표시합니다. <a href="/search/?q={{ page.sigungu | uri_escape }}" style="color:#4F46E5;font-weight:700;">검색으로 찾아보기 →</a>
+  </div>
+  {% endif %}
+
+  <ul class="office-list" id="officeGrid">
+    {% for s in page.items %}<li><a href="/company/{{ s.slug }}/"><b>{{ s.companyName }}</b><small>{% for t in s.trades limit:3 %}{{ t.n }}{% unless forloop.last %}, {% endunless %}{% endfor %}{% if s.trades.size > 3 %} 외 {{ s.trades.size | minus: 3 }}개{% endif %}{% if s.master != "" %} · 대표 {{ s.master }}{% endif %}</small></a></li>
+    {% endfor %}
+  </ul>
+  <p id="noResult" style="display:none;color:#6B7280;text-align:center;padding:20px;">검색 결과가 없습니다.</p>
+
+  <div style="margin-top:40px;background:#F9FAFB;border-radius:14px;padding:24px 28px;">
+    <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:12px;">{{ page.sigungu }} {{ page.dongLabel }} 건설업체, 공사 맡기기 전에 확인하세요</h2>
+    <p style="color:#374151;line-height:1.8;font-size:.9375rem;margin-bottom:12px;">
+      건설공사는 건설업 등록을 한 업체만 도급받을 수 있습니다(경미한 공사 제외). 위 목록은 공공데이터의 등록 공시를 바탕으로 한 정보이며,
+      계약 전에는 업체의 건설업 등록증과 등록업종, 보증·보험 가입 여부를 직접 확인하세요.
+    </p>
+    <p style="font-size:.9rem;"><a href="/guide/">공사 업체 계약 전 체크리스트 →</a></p>
+  </div>
+
+</div>
+<aside class="tool-sidebar"></aside>
+</div>
+
+<script>
+document.getElementById('listFilter').addEventListener('input', function(e) {
+  const q = e.target.value.trim().toLowerCase();
+  let visible = 0;
+  document.querySelectorAll('#officeGrid li').forEach(c => {
+    const match = !q || (c.textContent || '').toLowerCase().includes(q);
+    c.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+  document.getElementById('noResult').style.display = visible === 0 ? '' : 'none';
+});
+</script>

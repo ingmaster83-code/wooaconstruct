@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<div class="page-with-sidebar">
+<div class="region-page">
+
+  <nav class="breadcrumb" aria-label="위치">
+    <a href="/">홈</a>
+    <span>›</span>
+    <a href="/region/{{ page.doShort | uri_escape }}/">{{ page.doShort }}</a>
+    <span>›</span>
+    <span>{{ page.sigungu }}</span>
+  </nav>
+
+  <div class="region-page-header">
+    <h1>🏗️ {{ page.doShort }} {{ page.sigungu }} 건설업체</h1>
+    <p>총 {{ page.totalCount }}곳 · 동/읍/면 또는 등록업종을 선택하세요</p>
+  </div>
+
+  <div class="ad-slot">
+    {% include ad.html %}
+  </div>
+
+  <div class="region-grid">
+    {% for dg in page.dongList %}
+    <a href="/region/{{ page.doShort | uri_escape }}/{{ page.sgSlug | uri_escape }}/{{ dg.name | uri_escape }}/" class="region-btn">
+      <span class="region-icon">📍</span>{% if dg.name == "기타" %}기타 지역{% else %}{{ dg.name }}{% endif %} <span style="color:#9CA3AF;font-size:.82rem;">({{ dg.count }})</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  {% if page.tradeList.size > 0 %}
+  <div class="section-title" style="margin:32px 0 12px;">🔧 {{ page.sigungu }} 등록업종별 업체</div>
+  <div class="region-grid">
+    {% for t in page.tradeList %}
+    <a href="/trade/{{ t.name | uri_escape }}/{{ page.doShort | uri_escape }}/{{ page.sgSlug | uri_escape }}/" class="region-btn">
+      <span class="region-icon">🔧</span>{{ t.name }} <span style="color:#9CA3AF;font-size:.82rem;">({{ t.count }})</span>
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div style="margin-top:40px;background:#F9FAFB;border-radius:14px;padding:24px 28px;">
+    <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:12px;">{{ page.doShort }} {{ page.sigungu }} 건설업체 안내</h2>
+    <p style="color:#374151;line-height:1.8;font-size:.9375rem;">
+      {{ page.doShort }} {{ page.sigungu }}에 건설업을 등록한 업체를 동/읍/면과 등록업종별로 확인할 수 있습니다. "기타 지역"은 주소에서 동/읍/면을 확인하지 못한 업체입니다.
+      공사를 맡기기 전에는 건설업 등록증과 등록업종이 공사 내용과 맞는지 확인하세요.
+    </p>
+  </div>
+
+</div>
+<aside class="tool-sidebar"></aside>
+</div>

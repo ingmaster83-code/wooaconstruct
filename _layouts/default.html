@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} | 우아건설{% else %}우아건설 - 전국 건설업체 등록 정보{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description | escape }}{% else %}{{ site.description | strip_newlines | escape }}{% endif %}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+  {% if page.layout == 'company' %}
+  <meta property="og:type" content="article">
+  {% else %}
+  <meta property="og:type" content="website">
+  {% endif %}
+  <meta property="og:title" content="{% if page.title %}{{ page.title | escape }} | 우아건설{% else %}우아건설 - 전국 건설업체 등록 정보{% endif %}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description | escape }}{% else %}{{ site.description | strip_newlines | escape }}{% endif %}">
+  {% unless page.layout == 'company' %}<meta property="og:image" content="{{ '/assets/og-image.png' | absolute_url }}">{% endunless %}
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:site_name" content="우아건설">
+  {% unless page.layout == 'company' %}<meta name="twitter:card" content="summary_large_image">{% endunless %}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9ZGENFSXWC');</script>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="{{ '/' | relative_url }}" class="site-logo">
+      <span class="logo-icon">🏗️</span>
+      <span class="logo-text">우아건설</span>
+    </a>
+    <nav class="header-nav">
+      <a href="{{ '/region/' | relative_url }}">지역별</a>
+      <a href="{{ '/search/' | relative_url }}">검색</a>
+      <a href="https://wooahouse.com">WooaHouse →</a>
+    </nav>
+  </div>
+</header>
+
+<script src="{{ '/assets/js/wooa-sites-bar.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/ad-dev-placeholder.js' | relative_url }}"></script>
+
+{% unless page.layout == 'company' or page.layout == 'dong' or page.layout == 'sigungu' or page.layout == 'do' or page.layout == 'trade' or page.layout == 'trade_sg' or page.layout == 'trade_index' or page.url == '/' %}
+<div class="top-ad-bar">
+  {% include ad.html %}
+</div>
+{% endunless %}
+
+<main class="site-main">
+  {{ content }}
+</main>
+<script src="{{ '/assets/js/wooa-sidebar.js' | relative_url }}"></script>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-disclaimer">
+      본 정보는 국토교통부 키스콘(건설산업지식정보시스템) 건설업 등록 공시 데이터(공공데이터포털)를 기반으로 합니다. 2008년 이후의 건설업 등록 공시 이력을 정리한 것으로, 폐업·등록말소는 반영되지 않아 현재 영업 중인지는 별도 확인이 필요합니다.<br>
+      전기·정보통신·소방 등 다른 법령상 공사업과 시공능력평가액은 포함되지 않습니다. 건설업 등록·영업 여부는 계약 전 관할 시·군·구청 또는 키스콘에서 직접 확인하세요.
+    </p>
+    <p class="footer-links">
+      <a href="https://wooahouse.com">WooaHouse</a> ·
+      <a href="https://wooabroker.wooahouse.com">우아중개사</a> ·
+      <a href="{{ '/privacy/' | relative_url }}">개인정보처리방침</a>
+    </p>
+    <p class="copyright">&copy; 2026 우아건설 · WooaHouse. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

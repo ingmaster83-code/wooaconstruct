@@ -1,0 +1,134 @@
+---
+layout: default
+title: 전국 건설업체 등록 정보 찾기
+description: 전국 건설업체의 건설업 등록업종·업종등록번호·대표자·공시 이력을 동·시군구·업종별로 확인하세요. 공사 계약 전 등록된 업체인지 점검할 수 있습니다.
+---
+
+<div class="hero">
+  <h1>우아건설 · 🏗️ 우리 동네 건설업체, 정식 등록된 곳일까요?</h1>
+  <p>업체명 또는 지역(동·구), 등록업종으로 건설업 등록 정보를 확인하세요</p>
+  <div class="search-wrap">
+    <input type="text" id="searchInput" class="search-input"
+           placeholder="예) 강남구, 역삼동, OO건설..."
+           autocomplete="off" aria-label="건설업체 검색">
+    <button class="search-btn" onclick="doSearch()">🔍 검색</button>
+  </div>
+</div>
+
+<div class="page-with-sidebar">
+<div>
+<div id="search-results"></div>
+
+<div class="top-ad-bar">
+  {% include ad.html %}
+</div>
+
+<div class="section" style="padding-bottom:0;">
+  <div style="background:#EEF2FF;border:1px solid #C7D2FE;border-radius:14px;padding:20px 24px;">
+    <p style="color:#3730A3;line-height:1.8;font-size:.92rem;">
+      💡 국토교통부 키스콘의 건설업 등록 공시를 바탕으로 전국 건설업체의 등록업종, 업종등록번호, 대표자, 등록 공시 이력을 시도·시군구·동·업종별로 확인하세요.
+      인테리어·토목·설비 공사를 맡기기 전에 등록 업체인지 점검하는 데 활용할 수 있습니다.
+    </p>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0;">
+  <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:14px;padding:16px 20px;">
+    <p style="color:#92400E;font-size:.85rem;line-height:1.7;">
+      ⚠️ 2008년 이후 건설업 등록 공시를 정리한 정보로, 폐업·등록말소는 반영되지 않았습니다. 전기·정보통신·소방공사업 등 다른 법령상 공사업은 포함되지 않으며, 최종 등록 여부는 관할 시·군·구청에서 확인하세요.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">📍 지역별 건설업체 찾기</h2>
+  <div class="region-grid">
+    <a href="/region/서울/" class="region-btn"><span class="region-icon">🏙️</span>서울</a>
+    <a href="/region/경기/" class="region-btn"><span class="region-icon">🌆</span>경기</a>
+    <a href="/region/인천/" class="region-btn"><span class="region-icon">⚓</span>인천</a>
+    <a href="/region/부산/" class="region-btn"><span class="region-icon">🌅</span>부산</a>
+    <a href="/region/대구/" class="region-btn"><span class="region-icon">🍎</span>대구</a>
+    <a href="/region/대전/" class="region-btn"><span class="region-icon">🔬</span>대전</a>
+    <a href="/region/광주/" class="region-btn"><span class="region-icon">🎨</span>광주</a>
+    <a href="/region/울산/" class="region-btn"><span class="region-icon">🏭</span>울산</a>
+    <a href="/region/세종/" class="region-btn"><span class="region-icon">🏛️</span>세종</a>
+    <a href="/region/강원/" class="region-btn"><span class="region-icon">🏔️</span>강원</a>
+    <a href="/region/충북/" class="region-btn"><span class="region-icon">📖</span>충북</a>
+    <a href="/region/충남/" class="region-btn"><span class="region-icon">🌊</span>충남</a>
+    <a href="/region/전북/" class="region-btn"><span class="region-icon">🌾</span>전북</a>
+    <a href="/region/전남/" class="region-btn"><span class="region-icon">🐚</span>전남</a>
+    <a href="/region/경북/" class="region-btn"><span class="region-icon">🍂</span>경북</a>
+    <a href="/region/경남/" class="region-btn"><span class="region-icon">🎋</span>경남</a>
+    <a href="/region/제주/" class="region-btn"><span class="region-icon">🌺</span>제주</a>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">🔧 등록업종별로 찾기</h2>
+  <p style="color:#6B7280;font-size:.9rem;margin-bottom:12px;">실내건축공사업, 토목공사업, 철근콘크리트공사업 등 업종별 업체를 지역별로 볼 수 있습니다.</p>
+  <a href="/trade/" class="reserve-btn secondary" style="display:inline-block;">건설업 등록업종 전체 보기 →</a>
+</div>
+
+<div class="section">
+  <h2 class="section-title">✅ 공사 업체 계약 전 확인하세요</h2>
+  <ul style="color:#374151;line-height:1.9;font-size:.93rem;padding-left:22px;">
+    <li>업체의 <strong>건설업 등록증</strong>과 공사에 맞는 <strong>등록업종</strong>인지</li>
+    <li>계약서의 상호·대표자·사업자번호가 등록증과 일치하는지</li>
+    <li><strong>하자보수보증</strong>과 보험 가입 여부</li>
+    <li>선금·기성금 지급 조건과 공사 범위가 서면에 명확한지</li>
+  </ul>
+  <p style="margin-top:12px;"><a href="/guide/">자세한 체크리스트 보기 →</a></p>
+</div>
+
+</div>
+<aside class="tool-sidebar"></aside>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<script>
+let fuseIndex = null;
+let fuse = null;
+
+async function loadIndex() {
+  if (fuseIndex) return;
+  const resp = await fetch('/search_index.json');
+  fuseIndex = await resp.json();
+  fuse = new Fuse(fuseIndex, { keys: ['n', 'do', 'sg', 'dg'], threshold: 0.3, minMatchCharLength: 1 });
+}
+
+function doSearch() {
+  const q = document.getElementById('searchInput').value.trim();
+  const el = document.getElementById('search-results');
+  if (!q) { el.innerHTML = ''; return; }
+  el.innerHTML = '<p style="text-align:center;padding:20px;color:#6B7280;">검색 중...</p>';
+  loadIndex().then(() => {
+    const results = fuse.search(q).slice(0, 30);
+    if (results.length === 0) {
+      el.innerHTML = '<p style="text-align:center;padding:20px;color:#6B7280;">검색 결과가 없습니다.</p>';
+      return;
+    }
+    el.innerHTML = `<div style="max-width:960px;margin:0 auto;padding:0 20px;">
+      <p style="padding:8px 0;font-size:.9rem;color:#6B7280;">"${q}" 검색 결과 ${results.length}개</p>
+      ${results.map(r => searchResultItem(r.item)).join('')}
+    </div>`;
+    el.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+function searchResultItem(f) {
+  const dongLabel = f.dg === '기타' ? '' : f.dg;
+  return `<div class="search-result-item">
+    <a href="/company/${f.s}/">
+      <div class="search-result-thumb" style="background:#E0E7FF;display:flex;align-items:center;justify-content:center;font-size:1.5rem;border-radius:6px;">🏗️</div>
+      <div>
+        <div class="search-result-name">${f.n}</div>
+        <div class="search-result-loc">📍 ${f.do || ''} ${f.sg || ''} ${dongLabel || ''}</div>
+      </div>
+    </a>
+  </div>`;
+}
+
+document.getElementById('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+const urlQ = new URLSearchParams(location.search).get('q');
+if (urlQ) { document.getElementById('searchInput').value = urlQ; doSearch(); }
+</script>

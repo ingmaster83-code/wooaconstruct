@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+<div class="page-with-sidebar">
+<div class="camp-page">
+
+  <nav class="breadcrumb" aria-label="위치">
+    <a href="/">홈</a>
+    <span>›</span>
+    <a href="/region/{{ page.doShort }}/">{{ page.doShort }}</a>
+    <span>›</span>
+    <a href="/region/{{ page.doShort }}/{{ page.sgSlug }}/">{{ page.sigungu }}</a>
+    <span>›</span>
+    <a href="/region/{{ page.doShort }}/{{ page.sgSlug }}/{{ page.dong }}/">{{ page.dongLabel }}</a>
+  </nav>
+
+  <div class="camp-header">
+    <div class="camp-tags">
+      <span class="tag tag-type">📍 {{ page.doShort }} {{ page.sigungu }} {{ page.dongLabel }}</span>
+      <span class="tag tag-safe">🏗️ 등록업종 {{ page.trades.size }}개</span>
+    </div>
+    <h1 class="camp-title">{{ page.companyName }}</h1>
+    {% if page.addr != "" %}<div class="camp-info-row"><span class="camp-info-icon">📍</span><span>{{ page.addr }}</span></div>{% endif %}
+    {% if page.tel != "" %}<div class="camp-info-row"><span class="camp-info-icon">📞</span><a href="tel:{{ page.tel }}">{{ page.tel }}</a></div>{% endif %}
+    {% if page.master != "" %}<div class="camp-info-row"><span class="camp-info-icon">👤</span><span>대표자 {{ page.master }}</span></div>{% endif %}
+    <div class="camp-info-row"><span class="camp-info-icon">🔖</span><span>사업자등록번호 {{ page.bizMask }}</span></div>
+  </div>
+
+  <div class="ad-slot">
+    {% include ad.html %}
+  </div>
+
+  {% if page.sinceYears and page.sinceYears >= 8 %}
+  <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:14px 18px;margin:16px 0;font-size:.86rem;color:#92400E;line-height:1.7;">
+    ⚠️ 최초 등록 공시 후 {{ page.sinceYears }}년이 지났습니다. 이 사이트는 폐업·등록말소 정보를 반영하지 못하므로, 거래 전에 현재 영업 중인지 꼭 확인하세요.
+  </div>
+  {% endif %}
+
+  <div class="camp-section trust-box">
+    <h2>🔧 건설업 등록 공시 업종</h2>
+    <ul class="office-list" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr));">
+      {% for t in page.trades %}<li><a href="/trade/{{ t.n | replace: ' ', '%20' }}/{{ page.doShort }}/{{ page.sgSlug }}/"><b>{{ t.n }}</b><small>업종등록번호 {{ t.r }}{% if t.d != "" %} · 신규등록 {{ t.d }}{% elsif t.f != "" %} · 최초공시 {{ t.f }}{% endif %}</small></a></li>
+      {% endfor %}
+    </ul>
+    <p class="kv-note">국토교통부 키스콘 건설업 등록 공시를 정리한 정보로, <strong>폐업·등록말소는 반영되지 않습니다.</strong> 최신 공시: {{ page.lastDate }}. 현재 영업 여부는 관할 시·군·구청 또는 <a href="/guide/">확인 방법</a>을 참고하세요.</p>
+  </div>
+
+  <div class="camp-section">
+    <h2>📜 최근 공시 이력</h2>
+    <ul class="office-list" style="grid-template-columns:1fr;">
+      {% for h in page.history %}<li><a href="/guide/" style="pointer-events:none"><b>{{ h.d }} · {{ h.f }}{% if h.t != "" %} · {{ h.t }}{% endif %}</b><small>{{ h.n }}{% if h.r != "-" and h.r != "" %} · {{ h.r }}{% endif %}</small></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="camp-section">
+    <h2>📍 {{ page.dongLabel }}에서의 위치</h2>
+    <p class="ctx">
+      {{ page.doShort }} {{ page.sigungu }} {{ page.dongLabel }}에는 건설업을 등록한 업체가 총 <strong>{{ page.dongCount }}곳</strong> 있고,
+      {{ page.companyName }}은(는) 최초 공시가 오래된 순서로 <strong>{{ page.dongRank }}번째</strong>입니다{% if page.firstDate != "" %}(최초 공시 {{ page.firstDate }}){% endif %}.
+    </p>
+    <p class="ctx-links">
+      <a href="/region/{{ page.doShort }}/{{ page.sgSlug }}/{{ page.dong }}/">{{ page.sigungu }} {{ page.dongLabel }} 건설업체 전체 →</a>
+    </p>
+    <a href="https://map.kakao.com/?q={{ page.addr | uri_escape }}" class="reserve-btn secondary" style="margin-top:12px;display:block;">🗺️ 카카오맵에서 위치 확인</a>
+  </div>
+
+  <div class="ad-slot">
+    {% include ad.html %}
+  </div>
+
+  {% if page.near.size > 0 %}
+  <div class="region-camps">
+    <h2>{{ page.sigungu }} {{ page.dongLabel }} 다른 건설업체</h2>
+    <ul class="office-list">
+      {% for n in page.near %}<li><a href="/company/{{ n.slug }}/"><b>{{ n.name }}</b></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+
+</div>
+<aside class="tool-sidebar"></aside>
+</div>

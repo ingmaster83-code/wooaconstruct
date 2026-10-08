@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+<div class="page-with-sidebar">
+<div class="region-page">
+
+  <nav class="breadcrumb" aria-label="위치">
+    <a href="/">홈</a>
+    <span>›</span>
+    <a href="/trade/">업종별</a>
+    <span>›</span>
+    <a href="/trade/{{ page.trade | uri_escape }}/">{{ page.trade }}</a>
+    <span>›</span>
+    <span>{{ page.sigungu }}</span>
+  </nav>
+
+  <div class="region-page-header">
+    <h1>🔧 {{ page.sigungu }} {{ page.trade }} 등록 건설업체</h1>
+    <p>{{ page.doShort }} {{ page.sigungu }} · 총 {{ page.totalCount }}곳</p>
+  </div>
+
+  <div class="ad-slot">
+    {% include ad.html %}
+  </div>
+
+  {% if page.truncated %}
+  <div style="background:#EEF2FF;border:1px solid #C7D2FE;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:.87rem;color:#3730A3;">
+    업체가 많아 가나다순 상위 {{ page.items.size }}곳만 표시합니다. <a href="/search/?q={{ page.sigungu | uri_escape }}" style="color:#4F46E5;font-weight:700;">검색으로 찾아보기 →</a>
+  </div>
+  {% endif %}
+
+  <ul class="office-list">
+    {% for s in page.items %}<li><a href="/company/{{ s.slug }}/"><b>{{ s.companyName }}</b><small>{% if s.master != "" %}대표 {{ s.master }} · {% endif %}{% if s.dong != "기타" %}{{ s.dong }}{% else %}기타 지역{% endif %}</small></a></li>
+    {% endfor %}
+  </ul>
+
+  <div style="margin-top:32px;font-size:.9rem;">
+    <a href="/region/{{ page.doShort | uri_escape }}/{{ page.sgSlug | uri_escape }}/">{{ page.sigungu }} 건설업체 전체 보기 →</a>
+  </div>
+
+</div>
+<aside class="tool-sidebar"></aside>
+</div>

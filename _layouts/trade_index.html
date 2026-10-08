@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<div class="page-with-sidebar">
+<div class="region-page">
+
+  <nav class="breadcrumb" aria-label="위치">
+    <a href="/">홈</a>
+    <span>›</span>
+    <span>업종별</span>
+  </nav>
+
+  <div class="region-page-header">
+    <h1>🔧 건설업 등록업종별 업체 찾기</h1>
+    <p>등록업종을 선택하면 지역별 업체를 볼 수 있습니다</p>
+  </div>
+
+  <div class="ad-slot">
+    {% include ad.html %}
+  </div>
+
+  <div class="region-grid">
+    {% for t in page.tradeList %}
+    <a href="/trade/{{ t.name | uri_escape }}/" class="region-btn">
+      <span class="region-icon">🔧</span>{{ t.name }} <span style="color:#9CA3AF;font-size:.82rem;">({{ t.count }})</span>
+    </a>
+    {% endfor %}
+  </div>
+
+</div>
+<aside class="tool-sidebar"></aside>
+</div>

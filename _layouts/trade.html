@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<div class="page-with-sidebar">
+<div class="region-page">
+
+  <nav class="breadcrumb" aria-label="위치">
+    <a href="/">홈</a>
+    <span>›</span>
+    <a href="/trade/">업종별</a>
+    <span>›</span>
+    <span>{{ page.trade }}</span>
+  </nav>
+
+  <div class="region-page-header">
+    <h1>🔧 {{ page.trade }} 등록 건설업체</h1>
+    <p>전국 {{ page.totalCount }}곳(지역 허브 기준) · 시군구를 선택하세요</p>
+  </div>
+
+  <div class="ad-slot">
+    {% include ad.html %}
+  </div>
+
+  <div class="region-grid">
+    {% for e in page.entries %}
+    <a href="/trade/{{ page.trade | uri_escape }}/{{ e.do | uri_escape }}/{{ e.sgSlug | uri_escape }}/" class="region-btn">
+      <span class="region-icon">📍</span>{{ e.do }} {{ e.sigungu }} <span style="color:#9CA3AF;font-size:.82rem;">({{ e.count }})</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div style="margin-top:40px;background:#F9FAFB;border-radius:14px;padding:24px 28px;">
+    <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:12px;">{{ page.trade }}이란?</h2>
+    <p style="color:#374151;line-height:1.8;font-size:.9375rem;">
+      건설산업기본법에 따라 건설공사를 업으로 하려면 공사 종류별 업종 등록이 필요합니다. 업종마다 시공할 수 있는 공사 범위가 다르므로,
+      공사를 맡기기 전에 업체가 해당 공사의 업종을 등록했는지 확인하세요. 시군구별로 업체가 3곳 이상인 지역만 표시됩니다.
+    </p>
+  </div>
+
+</div>
+<aside class="tool-sidebar"></aside>
+</div>

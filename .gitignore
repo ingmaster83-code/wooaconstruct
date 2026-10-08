@@ -1,0 +1,4 @@
+.env
+_site/
+_rawdata/kiscon_events.json
+Gemfile.lock

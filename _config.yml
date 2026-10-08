@@ -1,0 +1,32 @@
+title: 우아건설 - 전국 건설업체 등록 정보
+description: >-
+  전국 건설업체의 건설업 등록업종·업종등록번호·대표자·공시 이력을 동·시군구·업종별로
+  확인하세요. 공사 계약 전 등록된 업체인지 점검할 수 있습니다.
+url: "https://wooaconstruct.wooahouse.com"
+baseurl: ""
+lang: ko
+timezone: Asia/Seoul
+author: WooaHouse
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+plugins:
+  - jekyll-seo-tag
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - scripts/
+  - "*.py"
+  - "*.log"
+  - README.md
+  - .gitignore
+  - .env
+  - vendor/
+  - _rawdata/
+
+# 설계 메모: 국토부 키스콘 건설업체정보(공시 이벤트 피드) 전체 이력에서 현재 등록 상태를 복원.
+# 시도→시군구→동 허브 + 시군구×업종 허브 + 업종 허브 + 업체 상세. 사이트맵은 construct_generator.rb 분할본.

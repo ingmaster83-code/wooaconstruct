@@ -1,0 +1,41 @@
+---
+layout: default
+---
+
+<div class="page-with-sidebar">
+<div class="region-page">
+
+  <nav class="breadcrumb" aria-label="위치">
+    <a href="/">홈</a>
+    <span>›</span>
+    <span>{{ page.doShort }}</span>
+  </nav>
+
+  <div class="region-page-header">
+    <h1>🏗️ {{ page.doShort }} 건설업체</h1>
+    <p>총 {{ page.totalCount }}곳 · 시군구를 선택하세요</p>
+  </div>
+
+  <div class="ad-slot">
+    {% include ad.html %}
+  </div>
+
+  <div class="region-grid">
+    {% for sg in page.sigunguList %}
+    <a href="/region/{{ page.doShort | uri_escape }}/{{ sg.slug | uri_escape }}/" class="region-btn">
+      <span class="region-icon">📍</span>{{ sg.name }} <span style="color:#9CA3AF;font-size:.82rem;">({{ sg.count }})</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div style="margin-top:40px;background:#F9FAFB;border-radius:14px;padding:24px 28px;">
+    <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:12px;">{{ page.doShort }} 건설업체 찾기 안내</h2>
+    <p style="color:#374151;line-height:1.8;font-size:.9375rem;">
+      {{ page.doShort }}에 건설업을 등록한 업체를 시군구·동·등록업종별로 확인할 수 있습니다. 국토교통부 키스콘의 건설업 등록 공시 이력을 바탕으로
+      현재 등록 상태를 정리했으며, 업종등록번호와 대표자, 공시 이력을 함께 보여줍니다.
+    </p>
+  </div>
+
+</div>
+<aside class="tool-sidebar"></aside>
+</div>
