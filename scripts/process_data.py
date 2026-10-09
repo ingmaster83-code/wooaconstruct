@@ -96,6 +96,11 @@ def main():
         sigungu = clean(latest.get("ncrAreaDetailName"))
         addr = clean(latest.get("ncrGsAddr"))
         name = clean(latest.get("ncrGsKname"))
+        if sigungu in ("-", ""):
+            # 피드에 시군구가 비어 있는 업체(약 18%)는 주소의 두 번째 토큰으로 보정 (scripts/fix_missing_sigungu.py 와 동일 규칙)
+            toks = re.sub(r"\s+", " ", addr).split()
+            if len(toks) > 1 and re.match(r"^[가-힣]+(?:시|군|구)$", toks[1]):
+                sigungu = toks[1]
         if not (sido and sigungu and name):
             continue
         dong = dong_from_addr(addr) or "기타"
