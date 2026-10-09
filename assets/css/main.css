@@ -454,3 +454,8 @@ img { max-width: 100%; height: auto; }
 .kv-note{font-size:.82rem;color:#7C2D12}
 .ctx{color:#374151;line-height:1.8;font-size:.92rem}
 .ctx-links{margin-top:10px;font-size:.9rem}
+
+/* 사이드바 래퍼 안의 본문 블록은 열 너비에 맞춘다 */
+.page-with-sidebar > .side-main { min-width: 0; }
+.page-with-sidebar > .side-main > * { max-width: none; margin-left: 0; margin-right: 0; }
+.page-with-sidebar > .side-main > .section { padding-left: 0; padding-right: 0; }
