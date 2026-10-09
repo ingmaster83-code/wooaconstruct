@@ -49,6 +49,7 @@ layout: default
     <p style="font-size:.9rem;"><a href="/guide/">공사 업체 계약 전 체크리스트 →</a></p>
   </div>
 
+{% assign wt_key = page.doShort | append: "|" | append: page.sgSlug | append: "|" | append: page.dong %}{% assign wt = site.data.wooatown_dong[wt_key] %}{% if wt %}<p style="margin:20px 0 0;"><a href="https://wooatown.wooahouse.com/동네/{{ page.doShort | uri_escape }}/{{ wt.s | uri_escape }}/{{ wt.d | uri_escape }}/" style="font-weight:700;">🏘️ {{ wt.d }} 전체 생활정보 (우아동네) →</a></p>{% endif %}
 </div>
 <aside class="tool-sidebar"></aside>
 </div>
