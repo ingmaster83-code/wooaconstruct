@@ -11,12 +11,17 @@ import os, sys, json, time, argparse, datetime
 from pathlib import Path
 import requests
 
+def _need_key():
+    import os, sys
+    return os.environ.get("DATA_GO_KR_API_KEY") or sys.exit("환경변수 DATA_GO_KR_API_KEY 가 필요합니다(키를 코드에 넣지 마세요).")
+
+
 sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).parent.parent
 OUT = ROOT / "_rawdata" / "kiscon_events.json"
 URL = "https://apis.data.go.kr/1613000/ConAdminInfoSvc1/GongsiReg"
-KEY = os.environ.get("DATA_GO_KR_KEY", "9490b1d34e92aa9e25b32a4cff1438fc7b9c71e5d332413916a391e867f61e86")
+KEY = (os.environ.get("DATA_GO_KR_KEY") or _need_key())
 PAGE = 3000
 
 
